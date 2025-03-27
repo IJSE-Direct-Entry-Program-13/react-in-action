@@ -1,5 +1,6 @@
 import './App.css'
 import {useRef, useState} from "react";
+import Loop from "./loop/Loop.tsx";
 
 function App() {
     const [date, setDate] = useState('monday');
@@ -48,6 +49,8 @@ function App() {
                 })()
             }
             {myFn()}
+            <hr/>
+            <Loop />
         </>
     )
 

@@ -1,9 +1,9 @@
-import './Guest.css';
-
-function Guest() {
-    return (
-        <div>Guest component works</div>
-    );
-}
-
-export default Guest;
+import './Guest.css'
+  export function Guest() {
+      return (
+          <>
+              <h1>Guest component works!</h1>
+          </>
+      )
+  }
+  

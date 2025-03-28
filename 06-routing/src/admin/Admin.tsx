@@ -1,9 +1,9 @@
-import './Admin.css';
-
-function Admin() {
-    return (
-        <div>Admin component works</div>
-    );
-}
-
-export default Admin;
+import './Admin.css'
+  export function Admin() {
+      return (
+          <>
+              <h1>Admin component works!</h1>
+          </>
+      )
+  }
+  

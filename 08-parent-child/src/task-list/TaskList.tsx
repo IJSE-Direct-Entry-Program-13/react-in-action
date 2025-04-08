@@ -18,8 +18,9 @@ function TaskList() {
         elm.focus();
     }
 
-    function handleDelete(){
-        alert("Delete");
+    function handleDelete(index: number){
+        setTaskList(taskList
+            .filter((_t, i) => i !== index));
     }
 
     return (
@@ -33,7 +34,9 @@ function TaskList() {
             </form>
             <div className={'p-2'}>
                 {/*{taskList.map((t) => <Task>{t}</Task>)}*/}
-                {taskList.map((t) => <Task text={t} />)}
+                {taskList.map((t, index) =>
+                    <Task text={t} handleDelete=
+                        {()=>handleDelete(index)} />)}
             </div>
         </div>
     );

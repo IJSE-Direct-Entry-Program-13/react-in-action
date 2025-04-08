@@ -6,9 +6,9 @@ export function App() {
             <h1 className="p-2 text-center">React: State Management</h1>
             <div className="d-flex p-2 justify-content-between align-items-center">
                 <Spinner/>
-                <h2 className="flex-grow-1">Progress 10%</h2>
+                <h2 className="flex-grow-1 text-center">Progress 10%</h2>
             </div>
-            <div className="d-flex mt-2 p-2">
+            <div className="d-flex p-2">
                 <HSlider/>
                 <VSlider/>
             </div>
@@ -50,7 +50,7 @@ export function VSlider() {
     return (<>
         <input min={0} max={100}
                type="range" style={
-            {transform: 'rotate(90deg) translateX(50%)'}}/>
+            {transform: 'rotate(90deg) translateX(50px)'}}/>
     </>)
 }
 
@@ -61,8 +61,9 @@ export function HSlider() {
 }
 
 export function Spinner() {
-    return (<>
+    return (<div>
+        A number between 0 - 100
         <input className="form-control" type="number"
                min={0} max={100}/>
-    </>)
+    </div>)
 }

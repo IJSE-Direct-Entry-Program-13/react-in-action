@@ -18,7 +18,7 @@ function TaskList() {
         elm.focus();
     }
 
-    function handleDelete(index: number){
+    function handleDelete(index: number) {
         setTaskList(taskList
             .filter((_t, i) => i !== index));
     }
@@ -35,8 +35,9 @@ function TaskList() {
             <div className={'p-2'}>
                 {/*{taskList.map((t) => <Task>{t}</Task>)}*/}
                 {taskList.map((t, index) =>
-                    <Task text={t} handleDelete=
-                        {()=>handleDelete(index)} />)}
+                    // <Task text={t} handleDelete={() => handleDelete(index)}/>)}
+                    <Task text={t} handleDelete={handleDelete
+                        .bind(this, index)}/>)}
             </div>
         </div>
     );

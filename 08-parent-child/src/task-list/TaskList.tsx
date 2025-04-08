@@ -1,18 +1,39 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 import Task from "../task/Task.tsx";
 
 function TaskList() {
-    const [taskList] = useState(['Task 1', 'Task 2']);
+    const [taskList, setTaskList] = useState(['Task 1', 'Task 2']);
+    const txtRef =
+        useRef<HTMLInputElement>(null);
+
+    function handleAdd() {
+        const elm = txtRef.current!;
+        if (!elm.value.trim().length) {
+            elm.select();
+            elm.focus();
+            return;
+        }
+        setTaskList([...taskList, elm.value.trim()]);
+        elm.value = '';
+        elm.focus();
+    }
+
+    function handleDelete(){
+        alert("Delete");
+    }
 
     return (
         <div className={'p-2'}>
-            <form action="" className={'d-flex gap-2'}>
-                <input placeholder={'Eg. Time to sleep'}
-                    className="form-control" type="text"/>
-                <button className={'btn btn-primary'}>ADD</button>
+            <form action="javascript:void(0)" className={'d-flex gap-2'}>
+                <input ref={txtRef} placeholder={'Eg. Time to sleep'}
+                       className="form-control" type="text"/>
+                <button onClick={handleAdd} className={'btn btn-primary'}>
+                    ADD
+                </button>
             </form>
             <div className={'p-2'}>
-                {taskList.map(() => <Task />)}
+                {/*{taskList.map((t) => <Task>{t}</Task>)}*/}
+                {taskList.map((t) => <Task text={t} />)}
             </div>
         </div>
     );

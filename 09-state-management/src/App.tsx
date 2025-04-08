@@ -1,15 +1,19 @@
 import './App.css'
 import {createContext, useContext} from "react";
 
-const ProgressContext = createContext(0);
+export const ProgressContext = createContext(0);
 
 export function App() {
+    const progress = useContext(ProgressContext);
     return (
-        <ProgressContext.Provider value={30}>
+        <>
             <h1 className="p-2 text-center">React: State Management</h1>
-            <div className="d-flex p-2 justify-content-between align-items-center">
+            <div className="d-flex p-2 justi
+            fy-content-between align-items-center">
                 <Spinner/>
-                <h2 className="flex-grow-1 text-center">Progress 10%</h2>
+                <h2 className="flex-grow-1 text-center">
+                    Progress {progress}%
+                </h2>
             </div>
             <div className="d-flex p-2">
                 <HSlider/>
@@ -18,7 +22,7 @@ export function App() {
             <div className="d-flex p-2 justify-content-center mt-5 pt-5">
                 <ProgressWrapper/>
             </div>
-        </ProgressContext.Provider>
+        </>
     )
 }
 

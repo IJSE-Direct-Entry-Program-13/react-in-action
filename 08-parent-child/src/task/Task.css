@@ -1,0 +1,12 @@
+.task {
+    border-radius: 5px;
+    user-select: none;
+}
+
+.task:hover {
+    background-color: lightgray;
+}
+
+.task__btn-delete {
+    margin-right: 5px;
+}

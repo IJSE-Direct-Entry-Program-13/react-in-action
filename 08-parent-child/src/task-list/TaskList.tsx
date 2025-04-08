@@ -11,7 +11,9 @@ function TaskList() {
                     className="form-control" type="text"/>
                 <button className={'btn btn-primary'}>ADD</button>
             </form>
-            {taskList.map(() => <Task />)}
+            <div className={'p-2'}>
+                {taskList.map(() => <Task />)}
+            </div>
         </div>
     );
 }

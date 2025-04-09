@@ -1,5 +1,6 @@
 import './ManageCustomers.css';
 import {useId} from "react";
+import {useForm} from "react-hook-form";
 
 function ManageCustomers() {
     return (
@@ -20,15 +21,19 @@ export default ManageCustomers;
 function Form(){
     const txtId = useId();
     const txtName = useId();
+    const {register} = useForm();
+
     return (<form className="p-2 px-3">
         <div className="mb-2">
             <label className="mb-1" htmlFor={txtId}>Customer ID</label>
-            <input id={txtId} placeholder="Eg. C001"
+            <input {...register('txt-id')}
+                   id={txtId} placeholder="Eg. C001"
                 type="text" className="form-control"/>
         </div>
         <div className="mb-3">
             <label className="mb-1" htmlFor={txtName}>Customer Name</label>
-            <input id={txtName} placeholder="Eg. Kasun Sampath"
+            <input {...register('txt-name')}
+                   id={txtName} placeholder="Eg. Kasun Sampath"
                 type="text" className="form-control"/>
         </div>
         <div className="d-flex gap-2">

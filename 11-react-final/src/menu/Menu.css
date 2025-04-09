@@ -2,6 +2,13 @@
     width: 60px;
 }
 
+.menu__menu-item--active {
+    background-color: rgba(232, 232, 232, 0.56);
+    & i {
+        color: #1ea1ff;
+    }
+}
+
 .menu__menu-item:hover{
     cursor: pointer;
     background-color: rgba(232, 232, 232, 0.56);

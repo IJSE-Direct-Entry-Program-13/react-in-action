@@ -11,6 +11,10 @@ const routes: Routes = [
         Component: App,
         children: [
             {
+                index: true,
+                element: <Navigate to={'/dashboard'} />
+            },
+            {
                 path: 'dashboard',
                 Component: Dashboard
             },

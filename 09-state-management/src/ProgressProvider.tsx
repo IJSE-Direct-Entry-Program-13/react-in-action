@@ -1,4 +1,4 @@
-import {createContext, Dispatch, ReactNode, SetStateAction, useState} from "react";
+import {createContext, Dispatch, ReactNode, SetStateAction, useContext, useState} from "react";
 
 export const ProgressContext = createContext(0);
 export const SetProgressContext =
@@ -13,4 +13,11 @@ export function ProgressProvider({children}: {children: ReactNode}) {
             </SetProgressContext>
         </ProgressContext>
     );
+}
+
+export function useProgress(): [number, Dispatch<SetStateAction<number>>] {
+    const progress = useContext(ProgressContext);
+    const setProgress =
+        useContext(SetProgressContext)!;
+    return [progress, setProgress];
 }

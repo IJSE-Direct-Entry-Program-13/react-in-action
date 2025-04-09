@@ -1,13 +1,6 @@
 import './App.css'
-import {Dispatch, SetStateAction, useContext, useRef} from "react";
-import {ProgressContext, SetProgressContext} from "./ProgressProvider.tsx";
-
-export function useProgress(): [number, Dispatch<SetStateAction<number>>] {
-    const progress = useContext(ProgressContext);
-    const setProgress =
-        useContext(SetProgressContext)!;
-    return [progress, setProgress];
-}
+import {useContext, useRef} from "react";
+import {ProgressContext, useProgress} from "./ProgressProvider.tsx";
 
 export function App() {
     const progress = useContext(ProgressContext);

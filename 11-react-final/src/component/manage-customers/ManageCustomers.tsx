@@ -36,6 +36,7 @@ function Form() {
             reset();
         } catch (err) {
             alert("Failed to save the customer, try again");
+            console.error(err);
         }
     }
 

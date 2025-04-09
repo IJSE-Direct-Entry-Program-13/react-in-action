@@ -1,13 +1,16 @@
 import './App.css'
 import Menu from "./menu/Menu.tsx";
 import {Outlet} from "react-router";
+import {CustomerProvider} from "../context/CustomerContext.tsx";
 
 function App() {
 
     return (<div className="d-flex">
         <Menu/>
         <div className="flex-grow-1">
-            <Outlet/>
+            <CustomerProvider>
+                <Outlet/>
+            </CustomerProvider>
         </div>
     </div>)
 }

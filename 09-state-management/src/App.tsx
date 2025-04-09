@@ -58,8 +58,14 @@ export function ProgressWrapper() {
 
 export function VSlider() {
     const progress = useContext(ProgressContext);
+    const setProgress =
+        useContext(SetProgressContext)!;
+    const ref =
+        useRef<HTMLInputElement>(null);
     return (<>
         <input min={0} max={100} value={progress}
+               ref={ref}
+               onInput={()=>setProgress(+ref.current!.value)}
                type="range" style={
             {transform: 'rotate(90deg) translateX(50px)'}}/>
     </>)

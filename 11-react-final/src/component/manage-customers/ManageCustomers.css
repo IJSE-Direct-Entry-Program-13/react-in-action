@@ -1,0 +1,4 @@
+.table__trash:hover {
+    cursor: pointer;
+    color: red;
+}

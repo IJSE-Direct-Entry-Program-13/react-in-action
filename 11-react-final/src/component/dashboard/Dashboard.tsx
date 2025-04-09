@@ -6,7 +6,7 @@ function Dashboard() {
         <>
             <header className="p-2 px-3 border-bottom">
                 <h1>React Final Project</h1>
-                <div>Time to sign up from React</div>
+                <div>It's time to say bye to this crazy library 'React'</div>
             </header>
             <div className="dashboard__card-wrapper d-flex gap-2 justify-content-around p-3">
                 <Card color="lightgreen" text="Customers"

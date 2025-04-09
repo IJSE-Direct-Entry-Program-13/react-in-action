@@ -4,8 +4,9 @@ import {useNavigate} from "react-router";
 function Dashboard() {
     return (
         <>
-            <header className="text-center p-2 border-bottom">
-                <h1 className="m-0">React Final Project</h1>
+            <header className="p-2 px-3 border-bottom">
+                <h1>React Final Project</h1>
+                <div>Time to sign up from React</div>
             </header>
             <div className="dashboard__card-wrapper d-flex gap-2 justify-content-around p-3">
                 <Card color="lightgreen" text="Customers"

@@ -6,7 +6,7 @@ function Menu() {
             d-flex border-end justify-content-center">
             <menu className="w-100 text-center list-unstyled m-0
             d-flex flex-column gap-1">
-                <li title="Dashboard"
+                <li title="ManageItems"
                     className="menu__menu-item py-3">
                     <i className="bi-building-dash fs-2"></i></li>
                 <li title="Manage Customers"

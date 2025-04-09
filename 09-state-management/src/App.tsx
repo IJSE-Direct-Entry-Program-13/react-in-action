@@ -1,10 +1,10 @@
 import './App.css'
-import {createContext, useContext} from "react";
-
-export const ProgressContext = createContext(0);
+import {useContext, useRef} from "react";
+import {ProgressContext, SetProgressContext} from "./ProgressProvider.tsx";
 
 export function App() {
     const progress = useContext(ProgressContext);
+
     return (
         <>
             <h1 className="p-2 text-center">React: State Management</h1>
@@ -47,7 +47,7 @@ export function ProgressWrapper() {
         <div className="border bg-primary-subtle d-flex
         justify-content-center align-items-center"
              style={{
-                 borderRadius: `${progress/2}%`,
+                 borderRadius: `${progress / 2}%`,
                  width: '250px',
                  height: '250px'
              }}>
@@ -67,16 +67,27 @@ export function VSlider() {
 
 export function HSlider() {
     const progress = useContext(ProgressContext);
+    const setProgress
+        = useContext(SetProgressContext)!;
+    const ref
+        = useRef<HTMLInputElement>(null);
     return (<>
-        <input type="range" min={0} max={100} value={progress}/>
+        <input ref={ref}
+               onInput={()=>setProgress(+ref.current!.value)}
+               type="range" min={0} max={100} value={progress}/>
     </>)
 }
 
 export function Spinner() {
     const progress = useContext(ProgressContext);
+    const setProgress
+        = useContext(SetProgressContext);
+    const ref = useRef<HTMLInputElement>(null);
+
     return (<div>
         A number between 0 - 100
-        <input className="form-control" type="number"
+        <input onInput={()=> {setProgress!(+ref.current!.value)}}
+               ref={ref} className="form-control" type="number"
                min={0} max={100} value={progress}/>
     </div>)
 }

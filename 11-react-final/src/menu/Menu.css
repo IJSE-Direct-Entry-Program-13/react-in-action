@@ -5,4 +5,7 @@
 .menu__menu-item:hover{
     cursor: pointer;
     background-color: lightgray;
+    & i {
+        color: dodgerblue;
+    }
 }

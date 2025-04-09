@@ -66,7 +66,10 @@ export function VSlider() {
     return (<>
         <input min={0} max={100} value={progress}
                ref={ref}
-               onInput={() => setProgress(+ref.current!.value)}
+               onInput={() => setProgress({
+                   action: 'change',
+                   progress: +ref.current!.value
+               })}
                type="range" style={
             {transform: 'rotate(90deg) translateX(50px)'}}/>
     </>)
@@ -78,7 +81,10 @@ export function HSlider() {
         = useRef<HTMLInputElement>(null);
     return (<>
         <input ref={ref}
-               onInput={() => setProgress(+ref.current!.value)}
+               onInput={() => setProgress({
+                   action: 'change',
+                   progress: +ref.current!.value
+               })}
                type="range" min={0} max={100} value={progress}/>
     </>)
 }
@@ -90,7 +96,10 @@ export function Spinner() {
     return (<div>
         A number between 0 - 100
         <input onInput={() => {
-            setProgress!(+ref.current!.value)
+            setProgress!({
+                action: 'change',
+                progress: +ref.current!.value
+            })
         }}
                ref={ref} className="form-control" type="number"
                min={0} max={100} value={progress}/>

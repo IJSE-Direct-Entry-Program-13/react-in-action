@@ -6,7 +6,9 @@ function App() {
 
     return (<div className="d-flex">
         <Menu/>
-        <Outlet/>
+        <div className="flex-grow-1">
+            <Outlet/>
+        </div>
     </div>)
 }
 

@@ -103,7 +103,9 @@ function Table() {
                 <td className="text-center">{customer.id}</td>
                 <td>{customer.name}</td>
                 <td className="text-center">
-                    <i onClick={()=>{deleteCustomer(customer.id)}} className='table__trash fs-5 bi-trash'></i>
+                    <i onClick={() => {
+                        deleteCustomer(customer.id)
+                    }} className='table__trash fs-5 bi-trash'></i>
                 </td>
             </tr>))}
             </tbody>

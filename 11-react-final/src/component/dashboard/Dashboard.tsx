@@ -1,7 +1,9 @@
 import './Dashboard.css';
 import {useNavigate} from "react-router";
+import {useCustomer} from "../../hook/use-customer.tsx";
 
 function Dashboard() {
+    const {customerStore: {length: customerCount}} = useCustomer();
     return (
         <>
             <header className="p-2 px-3 border-bottom">
@@ -11,7 +13,7 @@ function Dashboard() {
             <div className="dashboard__card-wrapper d-flex gap-2 justify-content-around p-3">
                 <Card color="lightgreen" text="Customers"
                       link="/manage-customers"
-                      value={20} icon="bi-people"/>
+                      value={customerCount} icon="bi-people"/>
                 <Card color="lightblue" text="Items"
                       link="/manage-items"
                       value={40} icon="bi-list"/>

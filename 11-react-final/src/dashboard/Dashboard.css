@@ -1,5 +1,7 @@
 .card {
     width: 45%;
+    user-select: none;
+    cursor: pointer;
 }
 
 @media all and (max-width: 540px){

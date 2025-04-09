@@ -1,8 +1,9 @@
 import './ManageCustomers.css';
-import {useEffect, useId, useState} from "react";
+import {useEffect, useId} from "react";
 import {useForm} from "react-hook-form";
 import {Customer} from "../../dto/Customer.tsx";
 import {CustomerService} from "../../service/CustomerService.tsx";
+import {useCustomer} from "../../hook/use-customer.tsx";
 
 function ManageCustomers() {
     return (
@@ -76,14 +77,11 @@ function Form() {
 
 function Table() {
 
-    const [customerList, setCustomerList] =
-        useState<Array<Customer>>([])
+    const {customerStore: customerList, getAllCustomers}
+        = useCustomer();
 
     useEffect(() => {
-        (async () => {
-            setCustomerList(await CustomerService
-                .getAllCustomers());
-        })()
+        getAllCustomers();
     }, []);
 
     return (<div className="p-3">

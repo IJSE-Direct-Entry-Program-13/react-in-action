@@ -39,5 +39,25 @@ function Form(){
 }
 
 function Table(){
-    return (<>Table works!</>)
+    return (<div className="p-3">
+        <table className="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th className="text-center"
+                    style={{width: '70px'}}>ID</th>
+                <th>NAME</th>
+                <th className="text-center"
+                    style={{width: '70px'}}>DELETE</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <td colSpan={3} className="text-center">
+                        No Customers Found
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>)
 }

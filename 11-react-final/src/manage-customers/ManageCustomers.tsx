@@ -21,18 +21,29 @@ export default ManageCustomers;
 function Form(){
     const txtId = useId();
     const txtName = useId();
-    const {register} = useForm();
+    const {register, handleSubmit} = useForm();
 
-    return (<form className="p-2 px-3">
+    function saveCustomer(){
+        alert("Okay?");
+    }
+
+    return (<form className="p-2 px-3"
+                  onSubmit={handleSubmit(saveCustomer)}>
         <div className="mb-2">
             <label className="mb-1" htmlFor={txtId}>Customer ID</label>
-            <input {...register('txt-id')}
+            <input {...register('txt-id', {
+                pattern: /^C\d{3}$/,
+                required: true
+            })}
                    id={txtId} placeholder="Eg. C001"
                 type="text" className="form-control"/>
         </div>
         <div className="mb-3">
             <label className="mb-1" htmlFor={txtName}>Customer Name</label>
-            <input {...register('txt-name')}
+            <input {...register('txt-name', {
+                pattern: /^[A-Za-z][A-Za-z ]*$/,
+                required: true
+            })}
                    id={txtName} placeholder="Eg. Kasun Sampath"
                 type="text" className="form-control"/>
         </div>

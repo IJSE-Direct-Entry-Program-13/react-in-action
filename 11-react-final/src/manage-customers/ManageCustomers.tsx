@@ -21,7 +21,9 @@ export default ManageCustomers;
 function Form(){
     const txtId = useId();
     const txtName = useId();
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit,
+        formState: {isSubmitted, errors}} =
+        useForm();
 
     function saveCustomer(){
         alert("Okay?");
@@ -31,21 +33,28 @@ function Form(){
                   onSubmit={handleSubmit(saveCustomer)}>
         <div className="mb-2">
             <label className="mb-1" htmlFor={txtId}>Customer ID</label>
-            <input {...register('txt-id', {
+            <input {...register('txtId', {
                 pattern: /^C\d{3}$/,
                 required: true
             })}
                    id={txtId} placeholder="Eg. C001"
-                type="text" className="form-control"/>
+                type="text"
+               className={['form-control',
+                   isSubmitted && errors.txtId ? 'is-invalid': ''
+               ].join(' ')}/>
         </div>
         <div className="mb-3">
             <label className="mb-1" htmlFor={txtName}>Customer Name</label>
-            <input {...register('txt-name', {
+            <input {...register('txtName', {
                 pattern: /^[A-Za-z][A-Za-z ]*$/,
                 required: true
             })}
                    id={txtName} placeholder="Eg. Kasun Sampath"
-                type="text" className="form-control"/>
+                type="text"
+                   className={['form-control',
+                       isSubmitted && errors.txtName ? 'is-invalid': ''
+                   ].join(' ')}
+            />
         </div>
         <div className="d-flex gap-2">
             <button className="btn btn-primary">SAVE</button>

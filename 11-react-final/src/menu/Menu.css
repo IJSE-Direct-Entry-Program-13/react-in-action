@@ -1,0 +1,8 @@
+.menu {
+    width: 60px;
+}
+
+.menu__menu-item:hover{
+    cursor: pointer;
+    background-color: lightgray;
+}

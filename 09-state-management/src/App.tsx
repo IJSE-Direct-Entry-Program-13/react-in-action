@@ -1,6 +1,13 @@
 import './App.css'
-import {useContext, useRef} from "react";
+import {Dispatch, SetStateAction, useContext, useRef} from "react";
 import {ProgressContext, SetProgressContext} from "./ProgressProvider.tsx";
+
+export function useProgress(): [number, Dispatch<SetStateAction<number>>] {
+    const progress = useContext(ProgressContext);
+    const setProgress =
+        useContext(SetProgressContext)!;
+    return [progress, setProgress];
+}
 
 export function App() {
     const progress = useContext(ProgressContext);
@@ -57,42 +64,41 @@ export function ProgressWrapper() {
 }
 
 export function VSlider() {
-    const progress = useContext(ProgressContext);
-    const setProgress =
-        useContext(SetProgressContext)!;
+    // const progress = useContext(ProgressContext);
+    // const setProgress =
+    //     useContext(SetProgressContext)!;
+    const [progress, setProgress] = useProgress();
     const ref =
         useRef<HTMLInputElement>(null);
     return (<>
         <input min={0} max={100} value={progress}
                ref={ref}
-               onInput={()=>setProgress(+ref.current!.value)}
+               onInput={() => setProgress(+ref.current!.value)}
                type="range" style={
             {transform: 'rotate(90deg) translateX(50px)'}}/>
     </>)
 }
 
 export function HSlider() {
-    const progress = useContext(ProgressContext);
-    const setProgress
-        = useContext(SetProgressContext)!;
+    const [progress, setProgress] = useProgress();
     const ref
         = useRef<HTMLInputElement>(null);
     return (<>
         <input ref={ref}
-               onInput={()=>setProgress(+ref.current!.value)}
+               onInput={() => setProgress(+ref.current!.value)}
                type="range" min={0} max={100} value={progress}/>
     </>)
 }
 
 export function Spinner() {
-    const progress = useContext(ProgressContext);
-    const setProgress
-        = useContext(SetProgressContext);
+    const [progress, setProgress] = useProgress();
     const ref = useRef<HTMLInputElement>(null);
 
     return (<div>
         A number between 0 - 100
-        <input onInput={()=> {setProgress!(+ref.current!.value)}}
+        <input onInput={() => {
+            setProgress!(+ref.current!.value)
+        }}
                ref={ref} className="form-control" type="number"
                min={0} max={100} value={progress}/>
     </div>)

@@ -2,7 +2,6 @@ import './ManageCustomers.css';
 import {useEffect, useId} from "react";
 import {useForm} from "react-hook-form";
 import {Customer} from "../../dto/Customer.tsx";
-import {CustomerService} from "../../service/CustomerService.tsx";
 import {useCustomer} from "../../hook/use-customer.tsx";
 
 function ManageCustomers() {
@@ -25,16 +24,17 @@ function Form() {
     const txtId = useId();
     const txtName = useId();
     const {
-        register, getValues, handleSubmit, reset,
+        register, getValues, handleSubmit, reset, setFocus,
         formState: {isSubmitted, errors}
     } =
         useForm();
+    const {saveCustomer} = useCustomer();
 
-    async function saveCustomer() {
+    async function save() {
         try {
-            await CustomerService
-                .saveCustomer((getValues() as Customer));
+            await saveCustomer((getValues() as Customer));
             reset();
+            setFocus('id');
         } catch (err) {
             alert("Failed to save the customer, try again");
             console.error(err);
@@ -42,7 +42,7 @@ function Form() {
     }
 
     return (<form className="p-2 px-3"
-                  onSubmit={handleSubmit(saveCustomer)}>
+                  onSubmit={handleSubmit(save)}>
         <div className="mb-2">
             <label className="mb-1" htmlFor={txtId}>Customer ID</label>
             <input {...register('id', {
@@ -77,7 +77,7 @@ function Form() {
 
 function Table() {
 
-    const {customerStore: customerList, getAllCustomers}
+    const {customerStore: customerList, getAllCustomers, deleteCustomer}
         = useCustomer();
 
     useEffect(() => {
@@ -102,7 +102,9 @@ function Table() {
                 key={customer.id}>
                 <td className="text-center">{customer.id}</td>
                 <td>{customer.name}</td>
-                <td className="text-center"><i className='bi-trash'></i></td>
+                <td className="text-center">
+                    <i onClick={()=>{deleteCustomer(customer.id)}} className='bi-trash'></i>
+                </td>
             </tr>))}
             </tbody>
             {!customerList.length &&

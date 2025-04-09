@@ -1,6 +1,8 @@
 import './ManageCustomers.css';
-import {useId} from "react";
+import {useEffect, useId, useState} from "react";
 import {useForm} from "react-hook-form";
+import {Customer} from "../../dto/Customer.tsx";
+import {CustomerService} from "../../service/CustomerService.tsx";
 
 function ManageCustomers() {
     return (
@@ -64,6 +66,17 @@ function Form(){
 }
 
 function Table(){
+
+    const [customerList, setCustomerList] =
+        useState<Array<Customer>>([])
+
+    useEffect(() => {
+        (async ()=>{
+            setCustomerList(await CustomerService
+                .getAllCustomers());
+        })()
+    }, []);
+
     return (<div className="p-3">
         <table className="table table-bordered table-hover">
             <thead>
@@ -75,14 +88,22 @@ function Table(){
                     style={{width: '70px'}}>DELETE</th>
             </tr>
             </thead>
-            <tbody></tbody>
-            <tfoot>
-                <tr>
-                    <td colSpan={3} className="text-center">
-                        No Customers Found
-                    </td>
-                </tr>
-            </tfoot>
+            <tbody>
+            {customerList.map(customer => (<tr>
+                <td className="text-center">{customer.id}</td>
+                <td>{customer.name}</td>
+                <td className="text-center"><i className='bi-trash'></i></td>
+            </tr>))}
+            </tbody>
+            {!customerList.length &&
+                <tfoot>
+                    <tr>
+                        <td colSpan={3} className="text-center">
+                            No Customers Found
+                        </td>
+                    </tr>
+                </tfoot>
+            }
         </table>
     </div>)
 }

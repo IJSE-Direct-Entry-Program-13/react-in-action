@@ -1,8 +1,8 @@
-import Dashboard from "./dashboard/Dashboard.tsx";
-import ManageCustomers from "./manage-customers/ManageCustomers.tsx";
-import ManageItems from "./manage-items/ManageItems.tsx";
+import Dashboard from "./component/dashboard/Dashboard.tsx";
+import ManageCustomers from "./component/manage-customers/ManageCustomers.tsx";
+import ManageItems from "./component/manage-items/ManageItems.tsx";
 import {createBrowserRouter, Navigate, RouteObject} from "react-router";
-import App from "./App.tsx";
+import App from "./component/App.tsx";
 
 type Routes = RouteObject[];
 const routes: Routes = [

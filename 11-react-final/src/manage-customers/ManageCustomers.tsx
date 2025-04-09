@@ -21,7 +21,7 @@ export default ManageCustomers;
 function Form(){
     const txtId = useId();
     const txtName = useId();
-    const {register, handleSubmit,
+    const {register, handleSubmit, reset,
         formState: {isSubmitted, errors}} =
         useForm();
 
@@ -58,7 +58,7 @@ function Form(){
         </div>
         <div className="d-flex gap-2">
             <button className="btn btn-primary">SAVE</button>
-            <button className="btn btn-warning" type="reset">CLEAR</button>
+            <button onClick={()=> reset()} className="btn btn-warning" type="reset">CLEAR</button>
         </div>
     </form>)
 }
